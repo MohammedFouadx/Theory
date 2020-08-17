@@ -34,6 +34,8 @@ class BookPage : AppCompatActivity() {
                     editor.commit()
                 }
                 .defaultPage(no)
+                .enableSwipe(true)
+                .enableDoubletap(true)
                 .load()
         }
 
@@ -45,6 +47,8 @@ class BookPage : AppCompatActivity() {
                     editor.commit()
                 }
                 .defaultPage(noo)
+                .enableSwipe(true)
+                .enableDoubletap(true)
                 .load()
         }
     }

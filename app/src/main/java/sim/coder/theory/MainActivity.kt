@@ -3,8 +3,6 @@ package sim.coder.theory
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,24 +10,39 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() , Adapter.OnItemLisetner {
+
+    private lateinit var mInterstitialAd: InterstitialAd
+
+
+
     override fun OnClick(item: BooksData, position: Int) {
-        val start = Intent(applicationContext, BookPage::class.java)
+        val start = Intent(this, BookPage::class.java)
         start.putExtra("pdfFileName", item.Title)
         startActivity(start)    }
 
-    private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
+
+        //Banner ads
+
+        MobileAds.initialize(this) {}
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
+
+
+
         MobileAds.initialize(this) {}
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        mInterstitialAd.adUnitId = "ca-app-pub-5329195808649014/8244552144"
         mInterstitialAd.loadAd(
             AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -42,6 +55,7 @@ class MainActivity : AppCompatActivity() , Adapter.OnItemLisetner {
                 super.onAdLoaded()
             }
         }
+
 
 
 
@@ -64,8 +78,6 @@ class MainActivity : AppCompatActivity() , Adapter.OnItemLisetner {
 
 
     }
-
-
 
 }
 
