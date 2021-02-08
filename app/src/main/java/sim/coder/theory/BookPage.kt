@@ -3,10 +3,7 @@ package sim.coder.theory
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
+import com.github.barteksc.pdfviewer.util.FitPolicy
 import kotlinx.android.synthetic.main.activity_book_page.*
 
 class BookPage : AppCompatActivity() {
@@ -23,6 +20,9 @@ class BookPage : AppCompatActivity() {
         var no =pref.getInt("pageno",0)
         var noo =pref.getInt("pagenoo",0)
 
+        PdfViewer.useBestQuality(pref.getBoolean("quality_pref", false));
+
+
 
 
         val getItem = intent.getStringExtra("pdfFileName")
@@ -36,6 +36,7 @@ class BookPage : AppCompatActivity() {
                 .defaultPage(no)
                 .enableSwipe(true)
                 .enableDoubletap(true)
+                .pageFitPolicy(FitPolicy.WIDTH)
                 .load()
         }
 
@@ -48,10 +49,14 @@ class BookPage : AppCompatActivity() {
                 }
                 .defaultPage(noo)
                 .enableSwipe(true)
+                .pageFitPolicy(FitPolicy.WIDTH)
                 .enableDoubletap(true)
                 .load()
         }
     }
+
+
+
 
 }
 
