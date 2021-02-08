@@ -1,2 +1,2 @@
 # Theory
-an App to read pdf books
+an App to read pdf files
